@@ -1,0 +1,6 @@
+[user]
+    name = Nils Måsén
+    email = nils@piksel.se
+
+[core]
+    editor = vim
