@@ -74,16 +74,14 @@ install(){
     done 
 }
 
-result(){
-    if [ "$?" -ne "0" ]; then
-        echo -e "\e[91mFailed!\e[39m"
-    else
-        echo -e "\e[92mOK\e[39m"
-    fi
+install_symlink(){
+    install "symlink $1" "ln -s $DOTROOT/$1/$2 $HOME/$3"
 }
 
 verb "dotfiles root: $DOTROOT"
 
-#install 'bash-it' "git clone --depth=1 https://github.com/Bash-it/bash-it.git $DOTROOT/vendor/bash_it"
-#install 'vundle' "git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim"
-install 'symlinks' "ln -s $DOTROOT/bash/main $HOME/.bashrc" "ln -s $DOTROOT/vim/main $HOME/.vimrc"
+install 'bash-it' "git clone --depth=1 https://github.com/Bash-it/bash-it.git $DOTROOT/vendor/bash_it"
+install 'vundle' "git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim"
+install_symlinks 'bash' 'main' '.bashrc'
+install_symlinks 'vim' 'main' '.vimrc'
+install_symlinks 'git' 'config' '.gitconfig'
