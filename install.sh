@@ -80,8 +80,15 @@ install_symlink(){
 
 verb "dotfiles root: $DOTROOT"
 
+# bash
 install 'bash-it' "git clone --depth=1 https://github.com/Bash-it/bash-it.git $DOTROOT/vendor/bash_it"
+install 'commacd' "git clone --depth=1 https://github.com/shyiko/commacd.git $DOTROOT/vendor/commacd"
+install 'hhighlighter' "git clone --depth=1 https://github.com/paoloantinori/hhighlighter $DOTROOT/vendor/hhighlighter"
+
+# vim
 install 'vundle' "git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim"
+
+# symlinks
 install_symlinks 'bash' 'main' '.bashrc'
 install_symlinks 'vim' 'main' '.vimrc'
 install_symlinks 'git' 'config' '.gitconfig'

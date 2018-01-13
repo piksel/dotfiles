@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+DOTFILES="$HOME/.dotfiles"
+DOTVEND="$DOTFILES/vendor"
+
 # Path to the bash it configuration
-export BASH_IT="/home/nils/.dotfiles/vendor/bash_it"
+export BASH_IT="$DOTFILES/bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
@@ -50,3 +53,9 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+# Load commacd
+source "$DOTVEND/commacd.bash"
+
+# Load hhighlighter
+source "$DOTVEND/hhighlighter/h.sh"
