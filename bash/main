@@ -4,18 +4,18 @@ DOTFILES="$HOME/.dotfiles"
 DOTVEND="$DOTFILES/vendor"
 
 # Path to the bash it configuration
-export BASH_IT="$DOTFILES/bash_it"
+export BASH_IT="$DOTVEND/bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
+export BASH_IT_THEME="$DOTFILES/bash/themes/piksel/piksel.theme.bash"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
 # export BASH_IT_REMOTE='bash-it'
 
 # Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
+export GIT_HOSTING='git@git.github.com'
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -55,7 +55,7 @@ export SCM_CHECK=true
 source "$BASH_IT"/bash_it.sh
 
 # Load commacd
-source "$DOTVEND/commacd.bash"
+source "$DOTVEND/commacd/commacd.bash"
 
 # Load hhighlighter
 source "$DOTVEND/hhighlighter/h.sh"
