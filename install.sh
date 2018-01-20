@@ -10,7 +10,7 @@ set -Euo pipefail
 
 VERBOSE=""
 CONTINUE=""
-DOTROOT=""
+DOTROOT="$HOME/.dotfiles"
 
 usage(){
 	echo $0: usage: none
@@ -23,8 +23,8 @@ case $i in
 		VERBOSE="INDEED"
 		shift 
 		;;
-    -s=*|--search=*)
-		SEARCH="${i#*=}"
+    -d=*|--install-dir=*)
+		DOTROOT="${i#*=}"
 		shift 
 		;;
     *)
@@ -157,8 +157,8 @@ install_ycm(){
 
 }
 
-if [[ $0 == '-bash' ]]; then
-    DOTROOT="$HOME/.dotfiles"
+
+if [ ! -e "$DOTFILES" ]; then
     local name="dotfiles:base"
 	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
     read -n 1 -r
@@ -167,11 +167,10 @@ if [[ $0 == '-bash' ]]; then
         echo -en "Installing \e[94m$name\e[39m... "
         run_command git clone $GITREPO $DOTROOT
     else
+        echo "Note: Download script and run with --install-dir=/your/path to change install directory."
         exit 0
     fi
-else
-    DOTROOT="$(cd $(dirname $0) && pwd)"
-fi 
+fi
 
 verb "dotfiles root: $DOTROOT"
 
