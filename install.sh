@@ -1,12 +1,11 @@
 #!/bin/bash
 
-#set -uo pipefail
 set -Euo pipefail
-#set -x
 
+#set -x
 #trap 'echo -e "\n\e[97mScript failed at $LINENO!\e[39m"' ERR
 
-
+GITREPO="https://github.com/piksel/dotfiles"
 
 VERBOSE=""
 CONTINUE=""
