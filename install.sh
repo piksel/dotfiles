@@ -158,7 +158,7 @@ install_ycm(){
 }
 
 
-if [ ! -e "$DOTFILES" ]; then
+if [ ! -e "$DOTROOT" ]; then
     local name="dotfiles:base"
 	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
     read -n 1 -r
