@@ -159,7 +159,7 @@ install_ycm(){
 
 
 if [ ! -e "$DOTROOT" ]; then
-    local name="dotfiles:base"
+    name="dotfiles:base"
 	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
     read -n 1 -r
     echo
@@ -170,6 +170,7 @@ if [ ! -e "$DOTROOT" ]; then
         echo "Note: Download script and run with --install-dir=/your/path to change install directory."
         exit 0
     fi
+    unset name
 fi
 
 verb "dotfiles root: $DOTROOT"
