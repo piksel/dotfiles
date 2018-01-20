@@ -164,7 +164,7 @@ if [ ! -e "$DOTROOT" ]; then
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -en "Installing \e[94m$name\e[39m... "
-        run_command git clone $GITREPO $DOTROOT
+        run_command "git clone $GITREPO $DOTROOT"
     else
         echo "Note: Download script and run with --install-dir=/your/path to change install directory."
         exit 0
