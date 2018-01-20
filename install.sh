@@ -128,11 +128,11 @@ install_vim(){
     local name="vim:$1"
     local cmd="$2"
     echo -en "Install \e[94m$name\e[39m? "
-    read -n 1 -r /dev/tty
+    read -n 1 -r < /dev/tty
     echo 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -n "Installing $name... "
-        vim "+$cmd" +qall
+        vim "+$cmd" +qall < /dev/tty
         print_warn "Cannot determine success!\n"
     else
         print_skipping "$name" "Got reply '$REPLY'"
@@ -161,7 +161,7 @@ if [ ! -e "$DOTROOT" ]; then
     name="dotfiles:base"
 	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
     read -n 1 -r < /dev/tty
-    echo
+    echo 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -en "Installing \e[94m$name\e[39m... "
         run_command "git clone $GITREPO $DOTROOT"
