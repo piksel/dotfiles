@@ -6,9 +6,11 @@ set -Euo pipefail
 
 #trap 'echo -e "\n\e[97mScript failed at $LINENO!\e[39m"' ERR
 
+
+
 VERBOSE=""
 CONTINUE=""
-DOTROOT="$(cd $(dirname $0) && pwd)"
+DOTROOT=""
 
 usage(){
 	echo $0: usage: none
@@ -43,8 +45,6 @@ verb(){
 }
 
 install(){
-    local result
-    local cmd
     local ix=0
     local cmds="$(expr ${#} - 1)"
     echo -ne "\e[97mInstalling \e[94m$1\e[97m... \e[39m"
@@ -57,38 +57,138 @@ install(){
             ix=$(expr $ix + 1)
             echo -en " [$ix/$cmds]... "
         fi
-        cmd="$i"
-        result="$($cmd 2>&1)"
-        local code="$?"
-        if [ "$code" -ne "0" ]; then
-            echo -e "\e[91mFailed!\e[39m"
-            echo "+ $cmd" | indent
-            echo "$result" | indent
-            if [ -z "$CONTINUE" ]; then exit $code; fi
-        else
-                
-            echo -e "\e[92mOK\e[39m"
-            verb "+ $cmd"
-            verb "$result"
-        fi
+        run_command "$i"
     done 
 }
 
-install_symlink(){
-    install "symlink $1" "ln -s $DOTROOT/$1/$2 $HOME/$3"
+run_command(){
+    local result
+    local cmd=$1
+    result="$($cmd 2>&1)"
+    local code="$?"
+    if [ "$code" -ne "0" ]; then
+        print_failed
+        echo "+ $cmd" | indent
+        echo "$result" | indent
+        if [ -z "$CONTINUE" ]; then exit $code; fi
+    else
+        print_ok    
+        verb "+ $cmd"
+        verb "$result"
+    fi
 }
+
+print_failed(){
+    echo -e "\e[91mFailed!\e[39m"
+}
+
+print_ok(){
+    echo -e "\e[92mOK\e[39m"
+}
+
+print_skipping(){
+    echo -e "Skipping \e[94m$1\e[39m: $2"
+}
+
+print_warn(){
+    echo -en "\e[93mWarning\e[39m: $1"
+}
+
+install_symlink(){
+    local link="$HOME/$2"
+    local target="$DOTROOT/$1"
+    local name="symlink:$2"
+    if [ ! "$(readlink $link)" -ef "$target" ]; then
+        if [ -e "$link" ]; then
+            print_warn "Moving old \e[94m$2\e[39m to \e[94m$link.bak\e[39m... "
+            run_command "mv $link $link.bak"
+        fi
+        local dir="$(dirname $link)"
+        if [ ! -e "$dir" ]; then
+            echo -ne "Creating directory \e[94m$dir\e[39m... "
+            run_command "mkdir -p $link"
+        fi
+        install "$name" "ln -s $target $link"
+    else
+        print_skipping "$name" "Already exists"
+    fi
+}
+
+install_github(){
+    local target="$DOTROOT/vendor/$1"
+    local name="github:$2"
+    if [ ! -e "$target" ]; then
+        local repo="https://github.com/$2.git"
+        install "$name" "git clone --depth=1 $repo $target" 
+    else
+        print_skipping "$name" "Already exists"
+    fi
+}
+
+install_vim(){
+    local name="vim:$1"
+    local cmd="$2"
+    echo -en "Install \e[94m$name\e[39m? "
+    read -n 1 -r
+    echo 
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo -n "Installing $name... "
+        vim "+$cmd" +qall
+        print_warn "Cannot determine success!\n"
+    else
+        print_skipping "$name" "Got reply '$REPLY'"
+    fi
+}
+
+install_ycm(){
+	local name="compile:ycm"
+    echo -en "Install \e[94m$name\e[39m? "
+    read -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo -en "Installing \e[94m$name\e[39m... "
+		pushd $HOME/.vim/bundle/YouCompleteMe > /dev/null
+        run_command "./install.py"
+        popd >/dev/null
+
+    else
+        print_skipping "$name" "Got reply '$REPLY'"
+    fi
+
+}
+
+if [[ $0 == '-bash' ]]; then
+    DOTROOT="$HOME/.dotfiles"
+    local name="dotfiles:base"
+	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
+    read -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo -en "Installing \e[94m$name\e[39m... "
+        run_command git clone $GITREPO $DOTROOT
+    else
+        exit 0
+    fi
+else
+    DOTROOT="$(cd $(dirname $0) && pwd)"
+fi 
 
 verb "dotfiles root: $DOTROOT"
 
 # bash
-install 'bash-it' "git clone --depth=1 https://github.com/Bash-it/bash-it.git $DOTROOT/vendor/bash_it"
-install 'commacd' "git clone --depth=1 https://github.com/shyiko/commacd.git $DOTROOT/vendor/commacd"
-install 'hhighlighter' "git clone --depth=1 https://github.com/paoloantinori/hhighlighter $DOTROOT/vendor/hhighlighter"
+install_github 'bash_it' "Bash-it/bash-it"
+install_github 'commacd' "shyiko/commacd"
+install_github 'hhighlighter' "paoloantinori/hhighlighter"
 
 # vim
-install 'vundle' "git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim"
+install_github 'vundle' "VundleVim/Vundle.vim"
 
 # symlinks
-install_symlinks 'bash' 'main' '.bashrc'
-install_symlinks 'vim' 'main' '.vimrc'
-install_symlinks 'git' 'config' '.gitconfig'
+install_symlink 'bash/main' '.bashrc'
+install_symlink 'vendor/vundle' '.vim/bundle/Vundle.vim'
+install_symlink 'vim/main' '.vimrc'
+install_symlink 'git/config' '.gitconfig'
+
+# vundle
+install_vim 'vundle' 'PluginInstall'
+install_ycm
