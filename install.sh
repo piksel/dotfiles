@@ -129,7 +129,7 @@ install_vim(){
     local name="vim:$1"
     local cmd="$2"
     echo -en "Install \e[94m$name\e[39m? "
-    read -n 1 -r
+    read -n 1 -r /dev/tty
     echo 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -n "Installing $name... "
@@ -143,7 +143,7 @@ install_vim(){
 install_ycm(){
 	local name="compile:ycm"
     echo -en "Install \e[94m$name\e[39m? "
-    read -n 1 -r
+    read -n 1 -r < /dev/tty
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -en "Installing \e[94m$name\e[39m... "
@@ -161,7 +161,7 @@ install_ycm(){
 if [ ! -e "$DOTROOT" ]; then
     name="dotfiles:base"
 	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
-    read -n 1 -r
+    read -n 1 -r < /dev/tty
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -en "Installing \e[94m$name\e[39m... "
