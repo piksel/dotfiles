@@ -1,3 +1,5 @@
+" vim: set filetype=vim :
+
 " vundle
 set nocompatible
 filetype off
@@ -12,17 +14,38 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme='wombat'
 
+Plugin 'airblade/vim-gitgutter'
+Plugin 'nathanaelkane/vim-indent-guides'
+
 " utilites
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
 
 " syntax
 Plugin 'chr4/nginx.vim'
 
+Plugin 'scrooloose/syntastic'
+
 call vundle#end()
 
 filetype plugin indent on
+
+let g:dotinc_path = '~/.dotfiles/vim/'
+command -nargs=1 -complete=custom,DotIncComplete Dotinc execute 'source ' . g:dotinc_path . '<args>'
+
+fun DotIncComplete(A,L,P)
+	return system('ls ' . g:dotinc_path)
+endfun
+
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+
+
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -79,17 +102,30 @@ if !empty(&viminfo)
 endif
 set sessionoptions-=options
 
+" use tabs instead of windows by default
+set switchbuf=usetab,newtab
+
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
 endif
 
+" mouse support!
+set mouse=a
+
 inoremap <C-U> <C-G>u<C-U>
 
 " keys
 set pastetoggle=<F3>
+map § :
 
-" multi cursor
+" keys > ycm
+"let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+
+" keys > multi cursor
 let g:multi_cursor_start_key='<C-d>'
 "let g:multi_cursor_start_word_key='g<C-d>'
 let g:multi_cursor_next_key='<C-d>'
@@ -98,3 +134,10 @@ nnoremap <c-n> :%s///g<left><left>
 
 " sudo save
 cmap w!! w !sudo tee > /dev/null %
+
+
+" NERDTree
+let g:NERDTreeDirArrowExpandable = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
+
+Dotinc binary
