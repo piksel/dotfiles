@@ -123,7 +123,7 @@ map § :
 "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+"inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
 
 " keys > multi cursor
 let g:multi_cursor_start_key='<C-d>'
@@ -134,6 +134,12 @@ nnoremap <c-n> :%s///g<left><left>
 
 " sudo save
 cmap w!! w !sudo tee > /dev/null %
+
+" keys fix
+set t_ku=OA
+set t_kd=OB
+set t_kr=OC
+set t_kl=OD
 
 " Syntastic
 set statusline+=%#warningmsg#
