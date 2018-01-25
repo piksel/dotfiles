@@ -12,7 +12,7 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-let g:airline_theme='wombat'
+let g:airline_theme='badwolf'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -135,6 +135,17 @@ nnoremap <c-n> :%s///g<left><left>
 " sudo save
 cmap w!! w !sudo tee > /dev/null %
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+highlight Search cterm=None ctermbg=237
 
 " NERDTree
 let g:NERDTreeDirArrowExpandable = '▶'
