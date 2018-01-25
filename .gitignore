@@ -2,6 +2,8 @@ vendor
 
 npp/backup
 
+bash/lscolors
+
 # vim Swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]

@@ -156,6 +156,12 @@ install_ycm(){
 
 }
 
+install_lscolors() {
+    local name="bash:lscolors"
+    echo -en "Installing \e[94m$name\e[39m... "
+    dircolors -b $DOTROOT/vendor/lscolors/LS_COLORS > $DOTROOT/bash/lscolors
+    print_ok 
+}
 
 if [ ! -e "$DOTROOT" ]; then
     name="dotfiles:base"
@@ -178,6 +184,9 @@ verb "dotfiles root: $DOTROOT"
 install_github 'bash_it' "Bash-it/bash-it"
 install_github 'commacd' "shyiko/commacd"
 install_github 'hhighlighter' "paoloantinori/hhighlighter"
+install_github 'lscolors' 'trapd00r/LS_COLORS'
+
+install_lscolors 'lscolors' 
 
 # vim
 install_github 'vundle' "VundleVim/Vundle.vim"
@@ -187,6 +196,7 @@ install_symlink 'bash/main' '.bashrc'
 install_symlink 'vendor/vundle' '.vim/bundle/Vundle.vim'
 install_symlink 'vim/main' '.vimrc'
 install_symlink 'git/config' '.gitconfig'
+install_symlink 'misc/input' '.inputrc'
 
 # vundle
 install_vim 'vundle' 'PluginInstall'
