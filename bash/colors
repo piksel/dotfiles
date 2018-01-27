@@ -1,0 +1,16 @@
+#!/bin/bash
+
+colors() {
+    echo;
+    for l in 30 90; do 
+        for b in {0..1}; do 
+            echo -n " "; 
+            for i in {0..7}; do 
+                local c=$(expr $i + $l); 
+                echo -ne "\e[$b;$c""m\\\e[$b;$c""m\e[0m "; 
+            done; 
+            echo; 
+        done; 
+        echo; 
+    done
+}
