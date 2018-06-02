@@ -163,6 +163,8 @@ install_lscolors() {
     print_ok 
 }
 
+echo -e "\n\n\e[96m -- piksel dotfiles installer\e[39m\n"
+
 if [ ! -e "$DOTROOT" ]; then
     name="dotfiles:base"
 	echo -en "Install \e[94m$name\e[39m in \e[94m$DOTROOT\e[39m? "
