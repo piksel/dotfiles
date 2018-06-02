@@ -198,7 +198,7 @@ install_symlink 'bash/main' '.bashrc'
 install_symlink 'vendor/vundle' '.vim/bundle/Vundle.vim'
 install_symlink 'vim/main' '.vimrc'
 install_symlink 'git/config' '.gitconfig'
-install_symlink 'misc/input' '.inputrc'
+#install_symlink 'misc/input' '.inputrc'
 
 # vundle
 install_vim 'vundle' 'PluginInstall'
