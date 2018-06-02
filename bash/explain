@@ -1,0 +1,5 @@
+wtf() {
+    local url=$(echo "https://explainshell.com/explain?cmd=$@" | sed 's/ /%20/g')
+    echo -e " Graphical explanation URL: $url\n"
+    links -dump "$url" | tail -n +7
+}
