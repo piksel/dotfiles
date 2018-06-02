@@ -25,6 +25,7 @@ Plugin 'tpope/vim-fugitive'
 
 " syntax
 Plugin 'chr4/nginx.vim'
+Plugin 'nelsyeung/twig.vim'
 
 Plugin 'scrooloose/syntastic'
 
@@ -130,7 +131,14 @@ let g:multi_cursor_start_key='<C-d>'
 "let g:multi_cursor_start_word_key='g<C-d>'
 let g:multi_cursor_next_key='<C-d>'
 
+" multicursor replace
 nnoremap <c-n> :%s///g<left><left>
+
+cabbrev split vert split
+cabbrev hsplit split
+cabbrev help vert help
+noremap <C-w>] :vert botright wincmd ]<CR>
+noremap <C-w><C-]> :vert botright wincmd ]<CR>
 
 " sudo save
 cmap w!! w !sudo tee > /dev/null %
@@ -140,6 +148,12 @@ set t_ku=OA
 set t_kd=OB
 set t_kr=OC
 set t_kl=OD
+
+" quick quit
+nnoremap qq :qa!<CR>
+
+" NERDTree open
+noremap <C-o> NERDTree
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -154,7 +168,10 @@ let g:syntastic_check_on_wq = 0
 highlight Search cterm=None ctermbg=237
 
 " NERDTree
-let g:NERDTreeDirArrowExpandable = '▶'
-let g:NERDTreeDirArrowCollapsible = '▼'
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 Dotinc binary
+
+set exrc
+set secure
