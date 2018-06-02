@@ -105,7 +105,7 @@ install_symlink(){
         local dir="$(dirname $link)"
         if [ ! -e "$dir" ]; then
             echo -ne "Creating directory \e[94m$dir\e[39m... "
-            run_command "mkdir -p $link"
+            run_command "mkdir -p $dir"
         fi
         install "$name" "ln -s $target $link"
     else
