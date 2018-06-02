@@ -1,6 +1,3 @@
-if exists("did_load_filetypes")
-    finish
-endif
 augroup filetypedetect
-    au! BufNewFile,BufRead ~/.dotfiles/bash/* setf bash
+    au! BufNewFile,BufRead ~/.dotfiles/bash/* setf sh
 augroup END
