@@ -144,7 +144,16 @@ install_ycm(){
     echo -en "Install \e[94m$name\e[39m? "
     read -n 1 -r < /dev/tty
     echo
+    local prereqs="build-essential cmake python-dev python3-dev"
     if [[ $REPLY =~ ^[Yy]$ ]]; then
+        if [[ -n "$(which apt)" ]]; then
+            echo -e "Retrieving prerequisites using apt:\e[33m"
+            sudo apt install $prereqs
+            echo -e "\e[39m"
+        else
+            echo -e "\e[93mWarning:\e[39m No \e[97mapt\e[39m command found. Skipping installation of prerequisites."
+            echo -e "Make sure that the equivalent packages are installed: \e[36m$prereqs\e[39m."
+        fi 
         echo -en "Installing \e[94m$name\e[39m... "
 		pushd $HOME/.vim/bundle/YouCompleteMe > /dev/null
         run_command "./install.py"
