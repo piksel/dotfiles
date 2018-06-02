@@ -69,3 +69,5 @@ source "$DOTFILES/bash/colors"
 dot() {
     $DOTFILES/bin/dot.sh $@
 }
+
+
