@@ -192,6 +192,7 @@ fi
 verb "dotfiles root: $DOTROOT"
 
 # bash
+install_github 'composure' "erichs/composure"
 install_github 'bash_it' "Bash-it/bash-it"
 install_github 'commacd' "shyiko/commacd"
 install_github 'hhighlighter' "paoloantinori/hhighlighter"
@@ -212,3 +213,5 @@ install_symlink 'git/config' '.gitconfig'
 # vundle
 install_vim 'vundle' 'PluginInstall'
 install_ycm
+
+install_symlink 'composure' '.local/composure'
