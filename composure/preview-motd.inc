@@ -8,7 +8,7 @@ preview-motd ()
 
     for f in /etc/update-motd.d/*
     do
-        if [[ "$1" != "-n" ]]; then
+        if [[ "$1" != "-q" ]]; then
             echo -e "\e[37m--- $f ---\e[39m"
         fi
         sudo bash $f
