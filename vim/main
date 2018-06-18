@@ -149,11 +149,25 @@ set t_kd=OB
 set t_kr=OC
 set t_kl=OD
 
+" Unmap quit-visual-to-ex-mode
+nmap Q <NOP>
+
 " quick quit
-nnoremap qq :qa!<CR>
+"nnoremap qq :qa!<CR>
+nnoremap QQ :qa!<CR>
 
 " NERDTree open
-noremap <C-o> NERDTree
+noremap <silent> <C-o> :NERDTree<CR>
+
+" tab indentation
+nmap <TAB> >>
+nmap <S-TAB> <<
+vnoremap <TAB> >
+vnoremap <S-TAB> <
+
+" tab
+nnoremap <C-TAB> :tabn
+nnoremap <S-C-I> :tabn<CR>
 
 " Syntastic
 set statusline+=%#warningmsg#
