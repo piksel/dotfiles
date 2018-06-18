@@ -66,8 +66,5 @@ source "$DOTFILES/bash/lscolors"
 # Show ansi colors in terminal
 source "$DOTFILES/bash/colors"
 
-dot() {
-    $DOTFILES/bin/dot.sh $@
-}
-
-
+# Include dotfiles helper script
+source "$DOTFILES/bash/dot.sh"
