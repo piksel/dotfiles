@@ -6,3 +6,5 @@
     editor = vim
 [push]
 	default = simple
+[gpg]
+	program = gpg
