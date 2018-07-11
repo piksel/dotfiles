@@ -124,6 +124,28 @@ install_github(){
     fi
 }
 
+install_maybe(){
+    local name="$1"
+    local cmd="$2"
+    echo -en "Install \e[94m$name\e[39m? "
+    read -n 1 -r < /dev/tty
+    echo 
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install "$name" "$cmd"
+    else
+        print_skipping "$name" "Got reply '$REPLY'"
+    fi
+}
+
+install_bashit(){
+    set +u
+    BASH_IT=$DOTROOT/vendor/bash_it
+    source $BASH_IT/bash_it.sh
+    install_maybe "bash-it:default-aliases" "bash-it enable alias alias-completion base explain extract git git-subrepo history less-pretty-cat nginx node python sshagent ssh tmux"
+    install_maybe "bash-it:default-plugins" "bash-it enable plugin apt curl docker docker-compose general git systemd tmux vim yarn"
+    set -u
+}
+
 install_vim(){
     local name="vim:$1"
     local cmd="$2"
@@ -215,3 +237,4 @@ install_vim 'vundle' 'PluginInstall'
 install_ycm
 
 install_symlink 'composure' '.local/composure'
+install_bashit

@@ -69,7 +69,16 @@ dot(){
             # Add bash-it specific metadata cites
             cite _about _param _example _group _author _version
             source $DOTROOT/vendor/bash_it/lib/helpers.bash
-            bash-it "$@"
+            if [[ "$1" == "list" ]]; then
+                if [[ "$2" -eq "plugins" || "$2" -eq "aliases" ]]; then
+                    bash-it show $2 | grep "\[x\]" | awk '{ printf $1 " " }'
+                else
+                    echo "list action needs 'plugins' or 'aliases' as the first parameter"
+                    return 1
+                fi
+            else
+                bash-it "$@"
+            fi
             ;;
 
         install)
