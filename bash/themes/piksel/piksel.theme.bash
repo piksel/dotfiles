@@ -20,7 +20,7 @@ function prompt_command() {
     else
         res_prompt="$red╳"
     fi
-    PS1="\n\[$cyan\]\u\[$white\] @ \[$cyan\]\h \[$white\]\w\[$green\]$(scm_prompt_info)\n$res_prompt $reset_color➡ "
+    PS1="\n$cyan\u$white @ $cyan\h $white\w$green$(scm_prompt_info)\n$res_prompt $reset_color➡ "
 }
 
 THEME_CLOCK_COLOR=${THEME_CLOCK_COLOR:-"${white}"}
