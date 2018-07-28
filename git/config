@@ -4,9 +4,15 @@
 
 [core]
     editor = vim
+
 [push]
 	default = simple
+
 [gpg]
 	program = gpg
+
+[credential "https://github.com"]
+    username = piksel
+
 [include]
-	path = .local/gitconfig
+	path = .local/.gitconfig
