@@ -8,3 +8,5 @@
 	default = simple
 [gpg]
 	program = gpg
+[include]
+	path = .local/gitconfig
