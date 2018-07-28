@@ -58,6 +58,8 @@ dot(){
                    vim $DOTROOT/bash/main  ;;
                vim)
                    vim $DOTROOT/vim/main ;;
+               git)
+                   vim $DOTROOT/git/config ;;
                *)
                    echo "Unknown edit target '$target'. Valid targets are: install, dot, bash and vim."
                    return 1
