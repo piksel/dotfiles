@@ -71,3 +71,8 @@ source "$DOTFILES/bash/colors"
 
 # Include dotfiles helper script
 source "$DOTFILES/bash/dot.sh"
+
+# Include local bash config
+if [[ -f ~/.local/bashrc ]]; then
+    source ~/.local/bashrc
+fi
