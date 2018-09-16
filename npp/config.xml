@@ -1,14 +1,14 @@
 <NotepadPlus>
     <!-- The History of opened files list -->
     <GUIConfigs>
-        <GUIConfig name="ToolBar" visible="yes">standard</GUIConfig>
+        <GUIConfig name="ToolBar" visible="no">large</GUIConfig>
         <GUIConfig name="StatusBar">show</GUIConfig>
-        <GUIConfig name="TabBar" dragAndDrop="yes" drawTopBar="yes" drawInactiveTab="yes" reduce="yes" closeButton="yes" doubleClick2Close="no" vertical="no" multiLine="no" hide="yes" quitOnEmpty="no"/>
+        <GUIConfig name="TabBar" dragAndDrop="yes" drawTopBar="yes" drawInactiveTab="yes" reduce="yes" closeButton="no" doubleClick2Close="no" vertical="no" multiLine="no" hide="no" quitOnEmpty="no"/>
         <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
         <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
         <GUIConfig name="TabSetting" replaceBySpace="yes" size="4"/>
-        <GUIConfig name="AppPosition" x="-2245" y="86" width="1606" height="1080" isMaximized="yes"/>
-        <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20180120">no</GUIConfig>
+        <GUIConfig name="AppPosition" x="82" y="289" width="1750" height="787" isMaximized="no"/>
+        <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20180916">no</GUIConfig>
         <GUIConfig name="Auto-detection">yes</GUIConfig>
         <GUIConfig name="CheckHistoryFiles">no</GUIConfig>
         <GUIConfig name="TrayIcon">no</GUIConfig>
@@ -41,15 +41,19 @@
         <GUIConfig name="searchEngine" searchEngineChoice="2" searchEngineCustom=""/>
         <GUIConfig name="SmartHighLight" matchCase="no" wholeWordOnly="yes" useFindSettings="no" onAnotherView="no">yes</GUIConfig>
         <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" indentGuideLine="show" folderMarkStyle="arrow" lineWrapMethod="aligned" currentLineHilitingShow="show" scrollBeyondLastLine="yes" disableAdvancedScrolling="no" wrapSymbolShow="hide" Wrap="no" borderEdge="no" edge="line" edgeNbColumn="100" zoom="0" zoom2="0" whiteSpaceShow="hide" eolShow="hide" borderWidth="2" smoothFont="yes"/>
-        <GUIConfig name="DockingManager" leftWidth="200" rightWidth="378" topHeight="200" bottomHeight="208">
-            <PluginDlg pluginName="Notepad++::InternalFunction" id="44070" curr="0" prev="-1" isVisible="yes"/>
-            <PluginDlg pluginName="NppFTP.dll" id="0" curr="1" prev="-1" isVisible="no"/>
-            <PluginDlg pluginName="NppFTP.dll" id="99" curr="3" prev="-1" isVisible="no"/>
-            <PluginDlg pluginName="dummy" id="0" curr="3" prev="-1" isVisible="no"/>
+        <GUIConfig name="DockingManager" leftWidth="261" rightWidth="378" topHeight="200" bottomHeight="0">
+            <FloatingWindow cont="4" x="1126" y="622" width="1326" height="1022"/>
             <PluginDlg pluginName="NPPJSONViewer-win32.dll" id="0" curr="0" prev="-1" isVisible="no"/>
+            <PluginDlg pluginName="NppFTP.dll" id="0" curr="1" prev="-1" isVisible="no"/>
+            <PluginDlg pluginName="NppFTP.dll" id="99" curr="3" prev="4" isVisible="no"/>
+            <PluginDlg pluginName="ccc.dll" id="1" curr="1" prev="-1" isVisible="no"/>
+            <PluginDlg pluginName="Notepad++::InternalFunction" id="44070" curr="0" prev="-1" isVisible="no"/>
+            <PluginDlg pluginName="Notepad++::InternalFunction" id="44082" curr="0" prev="-1" isVisible="no"/>
+            <PluginDlg pluginName="Notepad++::InternalFunction" id="44083" curr="0" prev="-1" isVisible="no"/>
+            <PluginDlg pluginName="dummy" id="0" curr="3" prev="-1" isVisible="no"/>
             <PluginDlg pluginName="Notepad++::InternalFunction" id="44085" curr="0" prev="-1" isVisible="no"/>
             <PluginDlg pluginName="NPPJSONViewer.dll" id="0" curr="0" prev="-1" isVisible="no"/>
-            <ActiveTabs cont="0" activeTab="0"/>
+            <ActiveTabs cont="0" activeTab="-1"/>
             <ActiveTabs cont="1" activeTab="-1"/>
             <ActiveTabs cont="2" activeTab="-1"/>
             <ActiveTabs cont="3" activeTab="-1"/>
