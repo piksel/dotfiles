@@ -1,7 +1,7 @@
 $DotPath = "C:\dot"
 $DotRepo = "github.com/piksel/dotfiles"
 
-if( ! Test-Path $DotPath ){
+if( !(Test-Path $DotPath) ){
 Write-Host -n -f cy "Cloning "; Write-Host -n -f w $DotRepo; Write-Host -n -f cy " to "; Write-Host -n -f w $DotPath; Write-Host -f cy "..."
   git clone $DotRepo $DotPath
 }
