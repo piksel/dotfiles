@@ -11,14 +11,13 @@ $ProfilePath = Split-Path $Profile
 Write-Host -n -f cy "Using ProfilePath: "; Write-Host -f w $ProfilePath
 if (Test-Path $ProfilePath) {
   Write-Host -f Cyan "Profile path exists, linking scripts..."
-  New-Item -ItemType SymbolicLink -Path $ProfilePath -Name Microsoft.PowerShell_profile.ps1 -Value $DotPath\ps\Microsoft.PowerShell_profile.ps1 -Verbose
-  New-Item -ItemType SymbolicLink -Path $ProfilePath -Name NuGet_profile.ps1 -Value $DotPath\ps\NuGet_profile.ps1 -Verbose
+  start Powershell "-Command New-Item -ItemType SymbolicLink -Path $ProfilePath -Name Microsoft.PowerShell_profile.ps1 -Value $DotPath\ps\Microsoft.PowerShell_profile.ps1 -Verbose;   New-Item -ItemType SymbolicLink -Path $ProfilePath -Name NuGet_profile.ps1 -Value $DotPath\ps\NuGet_profile.ps1 -Verbose" -Verb RunAs
 } else {
   Write-Host -f Cyan "Linking profile path..."
   $ProfilePathName = Split-Path $ProfilePath -Leaf
   $ProfilePathDir = Split-Path $ProfilePath
-  New-Item -ItemType SymbolicLink -Path $ProfilePathDir -Name $ProfilePathName -Value $DotPath\ps -Verbose
+  Start Powershell "-Command New-Item -ItemType SymbolicLink -Path $ProfilePathDir -Name $ProfilePathName -Value $DotPath\ps -Verbose" -Verb RunAs
 }
 
 Write-Host -n -f cy "Installing "; Write-Host -n -f w "posh-git"; Write-Host -f cy "..."
-PowerShellGet\Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
+PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
