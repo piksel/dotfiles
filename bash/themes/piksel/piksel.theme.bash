@@ -16,11 +16,11 @@ RVM_THEME_PROMPT_SUFFIX="|"
 function prompt_command() {
     local EXIT="$?"
     if [ "$EXIT" == 0 ]; then
-        res_prompt="$green✔"
+        res_prompt="${green}✓"
     else
-        res_prompt="$red╳"
+        res_prompt="${red}✗"
     fi
-    PS1="\n$cyan\u$white @ $cyan\h $white\w$green$(scm_prompt_info)\n$res_prompt $reset_color➡ "
+    PS1="\n$cyan\u$white @ $cyan\h $white\w$green$(scm_prompt_info)\n$res_prompt $reset_color> "
 }
 
 THEME_CLOCK_COLOR=${THEME_CLOCK_COLOR:-"${white}"}
