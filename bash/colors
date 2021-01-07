@@ -7,7 +7,7 @@ colors() {
             echo -n " "; 
             for i in {0..7}; do 
                 local c=$(expr $i + $l); 
-                echo -ne "\e[$b;$c""m\\\e[$b;$c""m\e[0m "; 
+                echo -ne "\x1b[$b;$c""m\\\e[$b;$c""m\x1b[0m "; 
             done; 
             echo; 
         done; 

@@ -1,5 +1,5 @@
 [user]
-    name = Nils Måsén
+	name = nils måsén
     email = nils@piksel.se
 
 [core]
@@ -16,3 +16,6 @@
 
 [include]
 	path = .local/.gitconfig
+
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
